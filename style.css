@@ -6,7 +6,8 @@
     --branco-franca: #FFFFFF;
     --vermelho-franca: #EF4135;
     
-    --fundo: #Fdfdfd; 
+    /* Fundo alterado para um tom levemente acinzentado/azulado para destacar a caixa branca */
+    --fundo: #e8eef2; 
     --texto: #2c3e50;
 }
 
@@ -42,7 +43,7 @@ body::before {
     padding: 30px;
     background: #fff;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 85, 164, 0.08); /* Sombra levemente azulada */
+    box-shadow: 0 10px 30px rgba(0, 85, 164, 0.15); /* Sombra um pouquinho mais forte para destacar */
 }
 
 /* Estilo fofo para os títulos */
@@ -105,46 +106,50 @@ audio {
 }
 
 /* 
-  Galeria de Fotos 
-  Usa Grid para se adaptar a celulares perfeitamente, 
-  mantendo a proporção de cada foto sem cortar.
+  Galeria de Fotos - Estilo Masonry (Pinterest)
+  Usa column-count para as fotos se encaixarem perfeitamente na vertical
 */
 .galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 15px;
+    column-count: 2;
+    column-gap: 15px;
     margin: 30px 0;
-    align-items: center; 
 }
 
 .galeria img {
     width: 100%;
     height: auto;
+    margin-bottom: 15px; /* Espaço entre as fotos da mesma coluna */
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
     border: 2px solid var(--branco-franca);
+    display: block;
+    break-inside: avoid; /* Evita que a foto seja cortada no meio ao mudar de coluna */
 }
 
 /* Efeito ao tocar na foto no celular / passar o mouse no PC */
 .galeria img:hover, .galeria img:active {
-    transform: scale(1.05) rotate(2deg);
+    transform: scale(1.03) rotate(1deg);
     box-shadow: 0 8px 16px rgba(0,0,0,0.15);
     border-color: var(--vermelho-franca);
     z-index: 2;
+    position: relative;
 }
 
 /* Ajustes para celulares menores */
 @media (max-width: 480px) {
-    .galeria {
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-        gap: 10px;
-    }
     .container {
         margin: 20px 15px;
         padding: 20px;
     }
     h2 {
         font-size: 2.2rem;
+    }
+    /* Mantém 2 colunas no celular, já que foi solicitado */
+    .galeria {
+        column-gap: 10px;
+    }
+    .galeria img {
+        margin-bottom: 10px;
     }
 }
