@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+    /* Cores da Bandeira da França */
+    --azul-franca: #0055A4;
+    --branco-franca: #FFFFFF;
+    --vermelho-franca: #EF4135;
+    
+    --fundo: #Fdfdfd; 
+    --texto: #2c3e50;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--fundo);
+    color: var(--texto);
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+}
+
+/* Faixa no topo da tela com as cores da França */
+body::before {
+    content: "";
+    display: block;
+    height: 8px;
+    width: 100%;
+    background: linear-gradient(to right, var(--azul-franca) 33.3%, var(--branco-franca) 33.3%, var(--branco-franca) 66.6%, var(--vermelho-franca) 66.6%);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+/* Cartão principal onde fica o texto */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 85, 164, 0.08); /* Sombra levemente azulada */
+}
+
+/* Estilo fofo para os títulos */
+h2 {
+    font-family: 'Caveat', cursive;
+    color: var(--azul-franca);
+    font-size: 2.8rem;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+h2::after {
+    content: "♥";
+    display: block;
+    font-size: 1.2rem;
+    color: var(--vermelho-franca);
+    margin-top: -10px;
+}
+
+p {
+    font-size: 1.15rem;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+/* O parágrafo de aviso da música */
+.ps-note {
+    background-color: #fff0f0;
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: var(--vermelho-franca);
+    border-left: 4px solid var(--vermelho-franca);
+    font-size: 1.05rem;
+}
+
+.assinatura {
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem;
+    text-align: right;
+    color: var(--vermelho-franca);
+    margin-top: 40px;
+}
+
+/* Player de Música Clean */
+.audio-container {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+audio {
+    width: 100%;
+    max-width: 350px;
+    outline: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 85, 164, 0.2);
+}
+
+/* 
+  Galeria de Fotos 
+  Usa Grid para se adaptar a celulares perfeitamente, 
+  mantendo a proporção de cada foto sem cortar.
+*/
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    margin: 30px 0;
+    align-items: center; 
+}
+
+.galeria img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--branco-franca);
+}
+
+/* Efeito ao tocar na foto no celular / passar o mouse no PC */
+.galeria img:hover, .galeria img:active {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    border-color: var(--vermelho-franca);
+    z-index: 2;
+}
+
+/* Ajustes para celulares menores */
+@media (max-width: 480px) {
+    .galeria {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 10px;
+    }
+    .container {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+    h2 {
+        font-size: 2.2rem;
+    }
+}
